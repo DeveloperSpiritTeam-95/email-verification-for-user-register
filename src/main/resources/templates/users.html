@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>List Users</title>
+	<link href="/webjars/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form method="post" th:action="@{/logout}">
+            <p>
+
+            <div th:text="${'Welcome, ' + #authentication.name}">
+                The value of the "name" property of the authentication object should appear here.
+            </div>
+            </p>
+
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div>
+        <h1>List of Users</h1>
+    </div>
+
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>User ID</th>
+                <th>E-mail</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user: ${listUsers}">
+                <td th:text="${user.id}">User ID</td>
+                <td th:text="${user.email}">E-mail</td>
+                <td th:text="${user.firstName}">First Name</td>
+                <td th:text="${user.lastName}">Last Name</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
